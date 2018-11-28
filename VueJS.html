@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exercícios de Vue.JS</title>
+</head>
+<body style="background-image:  url('https://cdn.autopapo.com.br/box/uploads/2017/12/08074243/istock-600057234.jpg'); background-repeat: no-repeat; background-size: 100% 209%">
+	<!-- <div id="app">
+	  {{ message }}
+	  <span v-bind:title="message_2">
+	    <p>Pare o mouse sobre mim e veja a dica interligada dinamicamente!</p>
+	  </span>
+	  <ol>
+	    <li v-for="todo in todos">
+	      {{ todo.text }}
+	    </li>
+	  </ol>
+	  <p>{{ message_3 }}</p>
+  	  <button v-on:click="reverseMessage">Inverter Mensagem</button>
+  	  <p>{{ message_4 }}</p>
+  	  <input v-model="message_4">
+	</div> -->
+	<div id="app-7" align="center" style="margin-top: 20%; font-size: 24px;">
+	  <!-- <ol>
+	    
+	      Agora provemos cada todo-item com o objeto todo que ele
+	      representa, de forma que seu conteúdo possa ser dinâmico.
+	      Também precisamos prover cada componente com uma "chave",
+	      a qual será explicada posteriormente.
+	    
+	    <todo-item
+	      v-for="item in groceryList"
+	      v-bind:todo="item"
+	      v-bind:key="item.id">
+	    </todo-item>
+	  </ol> -->
+	  
+	 	<p><span style="color: white; background-color: #039BE5;">Hoje é: {{ now }}</span></p>
+	  	<p><span style="color: white; background-color: #039BE5;">Faltam {{ contagemRegressiva() }} dias para as férias!</span></p>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	
+	/*new Vue({
+  			el: '#app',
+			data: {
+				message: 'Olá Mundo Vue!',
+				message_2: 'Você carregou esta página em ' + new Date().toLocaleString(),
+				todos: [
+			      { text: 'Aprender JavaScript' },
+			      { text: 'Aprender Vue' },
+			      { text: 'Criar algo incrível' }
+			    ],
+			    message_3: 'Olá Vue!',
+			    message_4: 'Olá Vue!'
+				  },
+			methods: {
+						reverseMessage: function () {
+					      this.message_3 = this.message_3.split('').reverse().join('')
+					    }
+					    
+					  }
+	});*/
+	Vue.component('todo-item', {
+	  	props: ['todo'],
+		template: '<li>{{ todo.text }}</li>'
+	});
+
+	new Vue({
+			  el: '#app-7',
+			  data: {
+			    groceryList: [
+			      { id: 0, text: 'Vegetais' },
+			      { id: 1, text: 'Queijo' },
+			      { id: 2, text: 'Carne' },
+			      { id: 3, text: 'Qualquer outra coisa que humanos podem comer' }
+			    ]
+			  },
+			methods: {
+				contagemRegressiva: function() {
+					 var dataFinal = new Date('12 20 2018');
+					 var dataInicial = Date.now();
+					 return Math.round((dataFinal - dataInicial)/1000/60/60/24);
+				}
+			},
+			computed: {
+				now: function () {
+			    	return Date()
+			  	}
+			}
+	});
+</script>
+</html>
