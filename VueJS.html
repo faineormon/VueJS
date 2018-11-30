@@ -1,95 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+		.fundoP {
+			color: white;
+			background-color: #039BE5;
+		}
+		
+		.botCalculo {
+			background-color:blue;
+			border-radius: 5px;
+			height: 50px;
+			color: white;
+			border-color: black;
+		}
+	</style>
 	<title>Exercícios de Vue.JS</title>
 </head>
 <body style="background-image:  url('https://cdn.autopapo.com.br/box/uploads/2017/12/08074243/istock-600057234.jpg'); background-repeat: no-repeat; background-size: 100% 209%">
-	<!-- <div id="app">
-	  {{ message }}
-	  <span v-bind:title="message_2">
-	    <p>Pare o mouse sobre mim e veja a dica interligada dinamicamente!</p>
-	  </span>
-	  <ol>
-	    <li v-for="todo in todos">
-	      {{ todo.text }}
-	    </li>
-	  </ol>
-	  <p>{{ message_3 }}</p>
-  	  <button v-on:click="reverseMessage">Inverter Mensagem</button>
-  	  <p>{{ message_4 }}</p>
-  	  <input v-model="message_4">
-	</div> -->
-	<div id="app-7" align="center" style="margin-top: 20%; font-size: 24px;">
-	  <!-- <ol>
-	    
-	      Agora provemos cada todo-item com o objeto todo que ele
-	      representa, de forma que seu conteúdo possa ser dinâmico.
-	      Também precisamos prover cada componente com uma "chave",
-	      a qual será explicada posteriormente.
-	    
-	    <todo-item
-	      v-for="item in groceryList"
-	      v-bind:todo="item"
-	      v-bind:key="item.id">
-	    </todo-item>
-	  </ol> -->
-	  
-	 	<p><span style="color: white; background-color: #039BE5;">Hoje é: {{ now }}</span></p>
-	  	<p><span style="color: white; background-color: #039BE5;">Faltam {{ contagemRegressiva() }} dias para as férias!</span></p>
+	<div id="app" align="center" style="margin-top: 10%; font-size: 24px;">
+		<h2 class="fundoP">FÉRIAS NA DICOMP</h2>
+		<br>
+	 	<p><span class="fundoP">Hoje é: {{ now }}</span></p>
+		<p><span class="fundoP">Faltam {{ contagemRegressiva() }} dias para as férias!</span></p>
+		<div>
+				<button class="botCalculo">Calcular minhas férias</button>
+		</div>
 	</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
- <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+<script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
 <script type="text/javascript">
-	
-	/*new Vue({
-  			el: '#app',
-			data: {
-				message: 'Olá Mundo Vue!',
-				message_2: 'Você carregou esta página em ' + new Date().toLocaleString(),
-				todos: [
-			      { text: 'Aprender JavaScript' },
-			      { text: 'Aprender Vue' },
-			      { text: 'Criar algo incrível' }
-			    ],
-			    message_3: 'Olá Vue!',
-			    message_4: 'Olá Vue!'
-				  },
-			methods: {
-						reverseMessage: function () {
-					      this.message_3 = this.message_3.split('').reverse().join('')
-					    }
-					    
-					  }
-	});*/
-	Vue.component('todo-item', {
-	  	props: ['todo'],
-		template: '<li>{{ todo.text }}</li>'
-	});
 
 	new Vue({
-			  el: '#app-7',
+			  el: '#app',
 			  data: {
-			    groceryList: [
-			      { id: 0, text: 'Vegetais' },
-			      { id: 1, text: 'Queijo' },
-			      { id: 2, text: 'Carne' },
-			      { id: 3, text: 'Qualquer outra coisa que humanos podem comer' }
-			    ]
+					dataInicial: moment(),
+					dataFinal: moment('2018-12-19 02:59:59'),
+					mudar: true
 			  },
 			methods: {
 				contagemRegressiva: function() {
-					var dataFinal = moment('2018-12-19 02:59:59');
-					var dataInicial = moment();
-					//var resultado = dataFinal.diff(dataInicial);
-					return moment(dataFinal - dataInicial).format('DD') + ' dias e ' + moment(dataFinal - dataInicial).format('HH:mm') + ' horas';
-					 //return dataFinal.getTime() - dataInicial.getTime();
+					//this.dataFinal = moment('2018-12-19 02:59:59');
+					//this.dataInicial = moment(); // UTILIZANDO ASSIM O PROGRAMA TAMBÉM FUNCIONA, MAS O MAIS INTERESSANTE ESTÁ EM DEIXAR OS VALORES EM DATA PARA SEREM MANIPULADOS.
+					return moment(this.dataFinal - this.dataInicial).format('DD') + ' dias e ' + moment(this.dataFinal - this.dataInicial).format('HH:mm') + ' horas';
 				}
 			},
 			computed: {
 				now: function () {
 			    	return new Date().toUTCString();
-			  	}
+			  }
 			}
 	});
 </script>
