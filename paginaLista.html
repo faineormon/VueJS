@@ -10,6 +10,9 @@
         .margim {
             margin-top: 2%;
         }
+        .padding {
+            padding-top: 1%;
+        }
         .lista {
             background-color: white;
             color: black;
@@ -22,17 +25,17 @@
         <h2 align="center">Lista de sugestão de coisas para fazer nas férias</h2>
         <div class="col-md-12 margim" align="center">
             <span>
-                A regra é simples, deixe aqui sua sugestão do que fazer nas férias e caso você já tenha feito algo desta lista, clique em feito.
+                A regra é simples, deixe aqui sua sugestão do que fazer nas férias e caso você já tenha feito algo desta lista, clique em "Já fiz".
             </span>
         </div>
         <div class="col-md-12 margim" align="center">
             <input placeholder="Coisas para fazer:" v-model="itensFazer" style="color: black;">
             <button type="button" class="btn btn-warning" @click="adicionarLista">Adicionar</button>
         </div>
-        <div class="col-md-6 col-md-offset-3 margim lista" align="center">
+        <div class="col-md-6 col-md-offset-3 margim lista padding" align="center">
             <ul>
                 <li v-for="item in lista">
-                    {{item.fazer}} <button type="button" class="btn btn-default btn-xs">Feitos</button> <hr>
+                    {{item.fazer}} <button type="button" class="btn btn-default btn-xs">Já fiz</button> <hr>
                 </li>
             </ul>
         </div>
