@@ -35,11 +35,16 @@
 					paginaLista: 'paginaLista.html',
 					dataCalculada: 'contagemRegressiva()'
 			  },
+			  /* whatch: {
+				now: function() {
+					setInterval(atualizaContagem,1000);	
+				}
+			  }, */
 			methods: {
 				contagemRegressiva: function() {
 					//this.dataFinal = moment('2018-12-19 02:59:59');
 					//this.dataInicial = moment(); // UTILIZANDO ASSIM O PROGRAMA TAMBÉM FUNCIONA, MAS O MAIS INTERESSANTE ESTÁ EM DEIXAR OS VALORES EM DATA PARA SEREM MANIPULADOS.
-					return moment(this.dataFinal - this.dataInicial).format('DD') + ' dias e ' + moment(this.dataFinal - this.dataInicial).format('HH:mm') + ' horas';
+					return /* moment(this.dataFinal - this.dataInicial).format('DD') + */ '00 dias e ' + moment(this.dataFinal - this.dataInicial).format('HH:mm') + ' horas';
 				},
 
 				atualizaContagem: function() {

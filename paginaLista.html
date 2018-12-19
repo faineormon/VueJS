@@ -7,23 +7,34 @@
 			color: white;
 			background-color: #039BE5;
 		}
+        .margim {
+            margin-top: 2%;
+        }
+        .lista {
+            background-color: white;
+            color: black;
+        }
 	</style>
 	<title>Exercícios de Vue.JS</title>
 </head>
 <body class="fundoP">
 	<div id="app2" style="margin-top: 10%;">
-        <h2 align="center">Lista de coisas pra as férias</h2>
-        <br>
-        <div class="col-md-6" align="center">
-            <ul>
-                <li v-for="item in lista">
-                    {{item.fazer}}
-                </li>
-            </ul>
+        <h2 align="center">Lista de sugestão de coisas para fazer nas férias</h2>
+        <div class="col-md-12 margim" align="center">
+            <span>
+                A regra é simples, deixe aqui sua sugestão do que fazer nas férias e caso você já tenha feito algo desta lista, clique em feito.
+            </span>
         </div>
-        <div class="col-md-6" align="center">
+        <div class="col-md-12 margim" align="center">
             <input placeholder="Coisas para fazer:" v-model="itensFazer" style="color: black;">
             <button type="button" class="btn btn-warning" @click="adicionarLista">Adicionar</button>
+        </div>
+        <div class="col-md-6 col-md-offset-3 margim lista" align="center">
+            <ul>
+                <li v-for="item in lista">
+                    {{item.fazer}} <button type="button" class="btn btn-default btn-xs">Feitos</button> <hr>
+                </li>
+            </ul>
         </div>
 	</div>
 </body>
@@ -44,12 +55,7 @@
                 adicionarLista: function(event) {
                     this.lista.push({fazer: this.itensFazer});
                     this.itensFazer = '';
-                }/* ,
-				contagemRegressiva: function() {
-					//this.dataFinal = moment('2018-12-19 02:59:59');
-					//this.dataInicial = moment(); // UTILIZANDO ASSIM O PROGRAMA TAMBÉM FUNCIONA, MAS O MAIS INTERESSANTE ESTÁ EM DEIXAR OS VALORES EM DATA PARA SEREM MANIPULADOS.
-					return moment(this.dataFinal - this.dataInicial).format('DD') + ' dias e ' + moment(this.dataFinal - this.dataInicial).format('HH:mm') + ' horas';
-				}, */
+                }
 			}
 	});
 </script>
